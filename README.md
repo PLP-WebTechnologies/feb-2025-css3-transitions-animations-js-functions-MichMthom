@@ -1,23 +1,60 @@
-# CSS3 Transitions, Animations, and Advanced JavaScript Functions
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smooth Animations and Local Storage</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <button id="animate-btn">Animate!</button>
+    <div id="animation-container">
+        <img id="animation-img" src="image.jpg" alt="Animation Image">
+    </div>
 
-## Objectives
+    <script src="script.js"></script>
+</body>
+</html>
 
-Create smooth CSS transitions and animations.
-Use JavaScript functions for dynamic behavior.
-Implement local storage for data persistence.
 
-## Instructions
-Add CSS animations to elements like buttons or images.
+styles.css
 
->[!NOTE]
-> - Write a JavaScript function that:
-> - Stores and retrieves user preferences using localStorage.
-> - Implements an animation triggered by user actions.
+#animation-container {
+    width: 200px;
+    height: 200px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
 
-## Tasks
+#animation-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease-in-out;
+}
 
-Create a CSS animation.
-Store data in localStorage.
-Apply JavaScript to trigger animations.
+#animation-img.animate {
+    transform: scale(1.2) rotate(360deg);
+}
 
-Happy Coding! 💻✨
+
+script.js
+
+// Get elements
+const animateBtn = document.getElementById('animate-btn');
+const animationImg = document.getElementById('animation-img');
+
+// Store and retrieve user preferences using localStorage
+const storedPreference = localStorage.getItem('animationPreference');
+if (storedPreference === 'true') {
+    animationImg.classList.add('animate');
+}
+
+// Implement an animation triggered by user actions
+animateBtn.addEventListener('click', () => {
+    animationImg.classList.toggle('animate');
+    localStorage.setItem('animationPreference', animationImg.classList.contains('animate'));
+});
+
+
